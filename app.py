@@ -5,12 +5,18 @@ from libs.SerialController import SerialController
 
 import json
 
+import logging
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 bg_id = ""
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 ASYNC_MODE = None
-socketio = SocketIO(app, async_mode='threading', ping_timeout=30, logger=False, engineio_logger=False)
+
+socketio = SocketIO(app, async_mode='threading', ping_timeout=30, logger=False, engineio_logger=False, allow_unsafe_werkzeug=True)
+logging.getLogger('geventwebsocket.handler').setLevel(logging.ERROR) 
 
 class socketHandler:
     def sendMsg(self, topic, msg):

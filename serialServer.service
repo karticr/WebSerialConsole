@@ -10,7 +10,7 @@ Restart=always
 RestartSec=1
 User=root
 WorkingDirectory=/home/shutter/WebSerialConsole
-ExecStart=/usr/bin/env python3 app.py
+ExecStart=python3 app.py
 
 [Install]
 WantedBy=multi-user.target
