@@ -1,0 +1,16 @@
+[Unit]
+Description=serial shell server
+After=syslog.target network.target multi-user.target 
+Requires=graphical.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+WorkingDirectory=/home/shutter/WebSerialConsole
+ExecStart=/usr/bin/env python3 app.py
+
+[Install]
+WantedBy=multi-user.target
